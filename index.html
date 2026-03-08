@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Smart Campus Canteen | Skip the Queue</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background: #f8f6f6;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(30, 40, 50, 0.70) 0%,
+          rgba(30, 40, 50, 0.45) 50%,
+          rgba(30, 40, 50, 0.35) 100%);
+      z-index: 1;
+    }
+
+    /* ---- Header ---- */
+    .landing-header {
+      position: relative;
+      z-index: 10;
+      padding: 28px 32px;
+    }
+
+    .landing-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .landing-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .landing-logo h2 {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---- Hero Content ---- */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+      gap: 36px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      color: rgba(255, 255, 255, 0.90);
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.35);
+      max-width: 700px;
+    }
+
+    /* ---- Buttons ---- */
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn-student {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #111;
+      color: white;
+      padding: 16px 36px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-student:hover {
+      background: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      color: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 16px 36px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+      text-decoration: none;
+    }
+
+    .btn-admin:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ---- Social Proof ---- */
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar-stack .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+      margin-left: -10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .avatar-stack .avatar:first-child {
+      margin-left: 0;
+    }
+
+    .avatar-stack .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-social p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    /* ---- Footer ---- */
+    .landing-footer {
+      position: relative;
+      z-index: 10;
+      padding: 32px 32px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8f6f6;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+    }
+
+    .footer-logo span {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #0f172a;
+    }
+
+    .footer-copy {
+      font-size: 0.875rem;
+      color: #94a3b8;
+    }
+
+    @media (min-width: 1024px) {
+      .landing-header {
+        padding: 28px 64px;
+      }
+    }
+
+    #marjive {
+      color: #e57003;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/WhatsApp Video 2026-03-08 at 3.23.59 AM.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <!-- Header (logo only) -->
+    <header class="landing-header">
+      <div class="landing-logo">
+        <div class="landing-logo-icon">
+          <span class="material-symbols-outlined" style="font-size:20px">restaurant</span>
+        </div>
+        <h2>Crave It</h2>
+      </div>
+    </header>
+
+    <!-- Centered Content -->
+    <div class="hero-content">
+      <span class="hero-badge">Campus Dining Evolved</span>
+
+      <h1>Skip the Queue,<span id="marjive">Not</span> the Cravings</h1>
+
+      <div class="hero-btns">
+        <a href="menu.html" class="btn-student">
+          <span class="material-symbols-outlined" style="font-size:20px">person</span>
+          Login as Student
+        </a>
+        <a href="admin-dashboard.html" class="btn-admin">
+          <span class="material-symbols-outlined" style="font-size:20px">admin_panel_settings</span>
+          Login as Admin
+        </a>
+      </div>
+
+      <div class="hero-social">
+        <div class="avatar-stack">
+          <div class="avatar"><img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz-tC0QWbaIfVbAZQbHoLfjC-3kn73qzFuAZsfSQxWCsVmlslWOGfVgaOtnTDr1seZAGNOxXFobE5YuAPMQX163xIErg_Db4CA820KajSjo2xQPpEb57THhQD31onMVaN-2yw9tDZFkz-w2uEVmVRtMwSfFa_vl70ZtA8IVJn_Yuq3lcOcmZ-0CON45RBnFFKo-xmUnpAnmNll5IWeh0XlOjqfwNuuQC5FmvUtPLMdI-A-CzRbbr3LJJkcsg0EvPx8nhKV5NmmZpQ"
+              alt="" /></div>
+          <div class="avatar"><img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_9r1YibD00wK80XLWZ61zTD47F22Yrn7FQmisUdpxMxRY2PGXWgBUDWQbm9Ksj1QzXwY040mh1QggMNikLAV9c1QEcK1taf96kPuwijgO3KrPxsZfiaf5bOqW8rD-MNipEWEuwSnlSXJtKuAwAt4e82CdQ74j55wRHUohwQ4GQ6_O5_Ir3JIuYe9oG465HcowTxhDYO4G4XfR6uWndc5TIb7gSQP9Q4PIKWKKRdy35GQGaa-3GI3Zr4uMQHmgLRUZth6J_EODUmE"
+              alt="" /></div>
+          <div class="avatar"><img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8zcsdJqXCsHLtVhJ_VaV9U5Uv6gJHOqdsAxXKv3s8kiKg8vQLSD9d1GAaCUa04QGMqn30nw7GeewHo-MAkRTDyOGashf4g6n6KxaEculQpjQmIgiQvB6Q0R2HWy8ZjQGFPaZGFHRrNLbHQE3p0R5mTMfksgtsK3yIO7dCY4J84E77S18hasVTAM2WVBNuy0NBYsHNu9Czzcj1N4jovmByKpDgBKrKBj6z9W3K_JPgc6bkzrIYzSvvVYXv3r_LwC_NgVlSZVR98Dg"
+              alt="" /></div>
+        </div>
+        <p>Join 5,000+ students today</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <span class="material-symbols-outlined" style="font-size:18px">restaurant</span>
+        </div>
+        <span>Crave It</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <p class="footer-copy">© 2026 Crave It. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
