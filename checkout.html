@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Checkout | Smart Campus Canteen</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        .pickup-time-btn {
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: white;
+            color: #888;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .pickup-time-btn.active {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method.active {
+            border-color: rgba(26, 26, 26, 0.2);
+            opacity: 1;
+        }
+
+        .checkout-order-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .checkout-order-thumb {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .section-label-dark {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body class="student-page">
+    <div class="grain-texture"></div>
+    <div class="bg-shape hide-mobile" style="opacity:0.95"></div>
+
+    <!-- Header -->
+    <header class="student-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><span class="material-symbols-outlined" style="font-size:20px">restaurant</span>
+                </div>
+                <h1 class="logo-text hide-mobile">Crave It</h1>
+            </a>
+            <div class="search-bar">
+                <div class="search-wrapper">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input class="search-input" placeholder="Discover your next favorite meal..." type="text" />
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn"><span class="material-symbols-outlined"
+                        style="color:#475569">notifications</span><span class="notification-dot"></span></button>
+                <div style="position:relative"><button class="icon-btn"><span class="material-symbols-outlined"
+                            style="color:#475569">shopping_cart</span><span class="cart-badge" id="cart-badge" style="display:none">0</span></button></div>
+                <button class="profile-btn"><span class="material-symbols-outlined"
+                        style="color:#94a3b8">person</span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="student-main">
+        <div class="student-layout">
+            <div class="student-content">
+                <div class="page-heading">
+                    <h2>Checkout</h2>
+                    <p>Confirm your order, choose a pickup time, and pay hassle-free.</p>
+                </div>
+
+                <div class="glass-card" style="border-radius:30px;padding:40px;margin-bottom:32px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+                        <span class="material-symbols-outlined" style="color:#1a1a1a">receipt_long</span>
+                        <h3 style="font-size:1.25rem;font-weight:700;font-family:var(--font-display)">Order Summary</h3>
+                        <span
+                            style="margin-left:auto;font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.15em">#ORD-0284</span>
+                    </div>
+                    <div id="checkout-items" style="display:flex;flex-direction:column;gap:24px;margin-bottom:32px"></div>
+                    <div style="border-top:1px solid rgba(0,0,0,0.05);padding-top:24px">
+                        <div
+                            style="display:flex;justify-content:space-between;color:#94a3b8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">
+                            <span>Subtotal</span><span id="checkout-subtotal">₹0</span></div>
+                        <div
+                            style="display:flex;justify-content:space-between;color:#94a3b8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">
+                            <span>Convenience</span><span id="checkout-convenience">₹0</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:8px">
+                            <span
+                                style="font-weight:700;text-transform:uppercase;letter-spacing:0.15em">Total</span><span
+                                id="checkout-total" style="font-size:1.875rem;font-weight:800;font-family:var(--font-display)">₹0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pickup Time -->
+                <div class="glass-card" style="border-radius:30px;padding:40px;margin-bottom:32px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+                        <span class="material-symbols-outlined" style="color:#1a1a1a">schedule</span>
+                        <h3 style="font-size:1.25rem;font-weight:700;font-family:var(--font-display)">Select Pickup Time
+                        </h3>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:12px">
+                        <button class="pickup-time-btn">12:15 PM</button>
+                        <button class="pickup-time-btn active"
+                            style="background:#1a1a1a;color:white;border-color:#1a1a1a">12:30 PM</button>
+                        <button class="pickup-time-btn">12:45 PM</button>
+                        <button class="pickup-time-btn">1:00 PM</button>
+                        <button class="pickup-time-btn">1:15 PM</button>
+                    </div>
+                </div>
+
+                <!-- Payment -->
+                <div class="glass-card" style="border-radius:30px;padding:40px;margin-bottom:32px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+                        <span class="material-symbols-outlined" style="color:#1a1a1a">account_balance_wallet</span>
+                        <h3 style="font-size:1.25rem;font-weight:700;font-family:var(--font-display)">Payment Method
+                        </h3>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:12px">
+                        <div class="payment-method active" style="border-color:rgba(26,26,26,0.2)">
+                            <div
+                                style="width:40px;height:40px;border-radius:12px;background:#1a1a1a;display:flex;align-items:center;justify-content:center">
+                                <span class="material-symbols-outlined"
+                                    style="color:white;font-size:20px">credit_card</span></div>
+                            <div>
+                                <h4 style="font-weight:700;font-size:0.875rem">Campus Credit</h4>
+                                <p style="font-size:11px;color:#94a3b8">Balance: ₹2,450</p>
+                            </div>
+                            <div
+                                style="margin-left:auto;width:20px;height:20px;border-radius:50%;border:2px solid #1a1a1a;display:flex;align-items:center;justify-content:center">
+                                <div style="width:10px;height:10px;border-radius:50%;background:#1a1a1a"></div>
+                            </div>
+                        </div>
+                        <div class="payment-method" style="opacity:0.6">
+                            <div
+                                style="width:40px;height:40px;border-radius:12px;background:#f1f5f9;display:flex;align-items:center;justify-content:center">
+                                <span class="material-symbols-outlined"
+                                    style="color:#475569;font-size:20px">phone_iphone</span></div>
+                            <div>
+                                <h4 style="font-weight:700;font-size:0.875rem">Apple Pay</h4>
+                                <p style="font-size:11px;color:#94a3b8">Connected</p>
+                            </div>
+                            <div
+                                style="margin-left:auto;width:20px;height:20px;border-radius:50%;border:2px solid #cbd5e1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="placeOrder()" class="btn-premium"
+                    style="width:100%;padding:20px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);display:block;text-align:center;border:none;cursor:pointer">Confirm
+                    Pre-Order</button>
+            </div>
+
+            <!-- Right Panel -->
+            <aside class="student-sidebar">
+                <div class="glass-card"
+                    style="border-radius:30px;padding:40px;position:sticky;top:112px;background:rgba(255,255,255,0.1);backdrop-filter:blur(48px)">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+                        <div
+                            style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center">
+                            <span class="material-symbols-outlined" style="color:white">person</span></div>
+                        <div>
+                            <h4 style="color:white;font-weight:700;font-size:0.875rem">Arjun Mehta</h4>
+                            <p
+                                style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em">
+                                Student ID: CSE-2024-0284</p>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:32px">
+                        <p class="section-label">Pickup Location</p>
+                        <p style="color:white;font-weight:600">Main Cafeteria, Block A</p>
+                        <p style="color:rgba(255,255,255,0.5);font-size:0.875rem">Ground Floor, Near Library Wing</p>
+                    </div>
+                    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px">
+                        <p class="section-label">Estimated Wait</p>
+                        <div style="display:flex;align-items:flex-end;gap:8px">
+                            <span
+                                style="font-size:3rem;font-weight:800;color:white;font-family:var(--font-display)">8</span>
+                            <span
+                                style="color:rgba(255,255,255,0.5);font-size:0.75rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.15em">minutes</span>
+                        </div>
+                        <p
+                            style="color:rgba(255,255,255,0.3);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;margin-top:8px">
+                            Based on current kitchen load</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

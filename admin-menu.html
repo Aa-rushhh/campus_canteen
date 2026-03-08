@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menu Manager | Smart Campus Canteen</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background: #F5F2EE;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-card-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a1a;
+            padding: 10px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            border: none;
+        }
+
+        .admin-card-btn:hover {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+
+<body style="background:#F5F2EE">
+    <div class="grain-texture"></div>
+
+    <!-- Fixed Left Sidebar -->
+    <aside class="admin-sidebar-fixed">
+        <div
+            style="width:48px;height:48px;background:var(--color-charcoal);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+            <span class="material-symbols-outlined" style="color:white;font-size:20px">restaurant</span></div>
+        <nav>
+            <a href="admin-dashboard.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">dashboard</span></a>
+            <a href="admin-menu.html" class="icon-nav-btn active-filled"><span
+                    class="material-symbols-outlined">restaurant_menu</span></a>
+            <a href="admin-orders.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">receipt_long</span></a>
+            <a href="admin-revenue.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">trending_up</span></a>
+            <a href="admin-reports.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">analytics</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="icon-nav-btn"><span class="material-symbols-outlined">settings</span></a>
+            <a href="index.html" class="icon-nav-btn"><span class="material-symbols-outlined">logout</span></a>
+        </div>
+    </aside>
+
+    <main style="padding-left:80px;margin-right:480px;min-height:100vh">
+        <div style="padding:48px 32px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px">
+                <div>
+                    <h2
+                        style="font-size:2.5rem;font-weight:800;font-family:var(--font-display);font-style:italic;letter-spacing:-0.03em;margin-bottom:8px">
+                        Menu Manager</h2>
+                    <p style="color:#64748b;max-width:512px;line-height:1.7;font-weight:300">Curate and refine
+                        your restaurant's culinary offerings.</p>
+                </div>
+                <a href="#" id="admin-add-item-btn" class="btn-premium"
+                    style="padding:16px 32px;border-radius:9999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);gap:8px;margin-bottom:8px">
+                    <span class="material-symbols-outlined" style="font-size:18px">add</span>Add New Item
+                </a>
+            </div>
+            <div class="menu-grid" id="admin-menu-grid">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Charcoal Panel (Fixed) -->
+    <div style="width:480px;position:fixed;right:0;top:0;bottom:0;z-index:5">
+        <div style="position:absolute;inset:0;background:#1a1a1a;clip-path:ellipse(85% 100% at 100% 50%)"></div>
+        <div
+            style="position:relative;z-index:10;padding:64px;height:100%;display:flex;flex-direction:column;justify-content:center">
+            <div class="dark-panel-card">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
+                    <div
+                        style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center">
+                        <span class="material-symbols-outlined" style="color:white">insights</span></div>
+                    <h2
+                        style="color:white;font-size:1.5rem;font-weight:700;font-family:var(--font-display);letter-spacing:-0.025em">
+                        Quick Insights</h2>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:32px">
+                    <div>
+                        <p
+                            style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:8px">
+                            Total Menu Items</p>
+                        <div style="display:flex;align-items:flex-end;gap:8px">
+                            <span id="admin-menu-total"
+                                style="color:white;font-size:3rem;font-family:var(--font-display)">0</span>
+                            <span
+                                style="color:rgba(255,255,255,0.6);font-size:0.75rem;font-weight:700;margin-bottom:8px">items</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p
+                            style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:8px">
+                            Active Today</p>
+                        <div style="display:flex;align-items:flex-end;gap:8px">
+                            <span id="admin-menu-active"
+                                style="color:white;font-size:3rem;font-family:var(--font-display)">0</span>
+                            <span
+                                style="color:rgba(255,255,255,0.3);font-size:0.75rem;font-weight:500;margin-bottom:8px">/
+                                all</span>
+                        </div>
+                    </div>
+                    <div style="padding-top:32px;border-top:1px solid rgba(255,255,255,0.1)">
+                        <p
+                            style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:16px">
+                            Most Popular Item</p>
+                        <div
+                            style="display:flex;align-items:center;gap:16px;background:rgba(255,255,255,0.05);padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,0.05)">
+                            <img style="width:64px;height:64px;border-radius:12px;object-fit:cover"
+                                src="assets/images/chicken caeser wrap.jpeg" alt="">
+                            <div>
+                                <h4 style="color:white;font-weight:700;font-size:0.875rem">Chicken Caesar Wrap</h4>
+                                <p
+                                    style="color:rgba(255,255,255,0.7);font-size:10px;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:0.15em">
+                                    124 orders this week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

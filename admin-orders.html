@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Orders | Smart Campus Canteen</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background: #F5F2EE;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .orders-wrap {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .orders-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .orders-content {
+            flex: 1;
+            padding: 24px 32px;
+        }
+
+        .status-select {
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid;
+            cursor: pointer;
+            appearance: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Left Sidebar -->
+    <aside class="admin-sidebar-fixed">
+        <div
+            style="width:48px;height:48px;background:var(--color-charcoal);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+            <span class="material-symbols-outlined" style="color:white;font-size:20px">restaurant</span></div>
+        <nav>
+            <a href="admin-dashboard.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">dashboard</span></a>
+            <a href="admin-menu.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">restaurant_menu</span></a>
+            <a href="admin-orders.html" class="icon-nav-btn active-filled"><span
+                    class="material-symbols-outlined">receipt_long</span></a>
+            <a href="admin-revenue.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">trending_up</span></a>
+            <a href="admin-reports.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">analytics</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="icon-nav-btn"><span class="material-symbols-outlined">settings</span></a>
+            <a href="index.html" class="icon-nav-btn"><span class="material-symbols-outlined">logout</span></a>
+        </div>
+    </aside>
+
+    <div class="orders-wrap" style="padding-left:80px">
+        <div class="orders-main">
+            <!-- Header -->
+            <header
+                style="display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid rgba(0,0,0,0.05)">
+                <div style="display:flex;align-items:center;gap:16px">
+                    <div
+                        style="width:40px;height:40px;background:var(--color-charcoal);border-radius:12px;display:flex;align-items:center;justify-content:center">
+                        <span class="material-symbols-outlined" style="color:white;font-size:20px">restaurant</span>
+                    </div>
+                    <div>
+                        <h1 style="font-size:1.125rem;font-weight:700;font-family:var(--font-display)">Crave It</h1>
+                        <p style="font-size:0.75rem;color:#94a3b8">Campus Dining</p>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:16px">
+                    <button style="position:relative;padding:8px;border-radius:12px;border:1px solid #e2e8f0"><span
+                            class="material-symbols-outlined" style="color:#475569">notifications</span><span
+                            style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:#ef4444;border-radius:50%"></span></button>
+                    <div
+                        style="width:36px;height:36px;border-radius:12px;background:#1a1a1a;display:flex;align-items:center;justify-content:center">
+                        <span class="material-symbols-outlined" style="color:white;font-size:18px">person</span>
+                    </div>
+                </div>
+            </header>
+
+            <div style="display:flex;flex:1">
+                <div class="orders-content" style="flex:1">
+                    <div style="margin-bottom:24px">
+                        <h2
+                            style="font-size:2.5rem;font-weight:800;font-family:var(--font-display);letter-spacing:-0.03em;font-style:italic;margin-bottom:8px">
+                            Orders</h2>
+                        <p style="color:#64748b;font-weight:300">Manage and track all student orders</p>
+                    </div>
+
+                    <div class="glass-card" style="border-radius:20px;overflow:hidden">
+                        <table class="order-table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Student Name</th>
+                                    <th>Items</th>
+                                    <th>Pickup Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-body">
+                            </tbody>
+                        </table>
+                        <div
+                            style="padding:16px 24px;display:flex;justify-content:center;align-items:center;border-top:1px solid #f1f5f9">
+                            <span id="admin-orders-count" style="font-size:0.75rem;color:#94a3b8">No orders</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Charcoal Panel -->
+                <div style="width:450px;position:relative;flex-shrink:0">
+                    <div style="position:absolute;inset:0;background:#2d2d2d;clip-path:ellipse(80% 120% at 100% 50%)">
+                    </div>
+                    <div
+                        style="position:relative;z-index:10;padding:48px;padding-left:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%">
+                        <div
+                            style="background:rgba(255,255,255,0.05);backdrop-filter:blur(48px);border:1px solid rgba(255,255,255,0.1);border-radius:30px;padding:40px;width:100%;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25)">
+                            <h3
+                                style="color:white;font-size:1.5rem;font-weight:700;font-family:var(--font-display);margin-bottom:32px">
+                                Order Summary</h3>
+                            <div style="display:flex;flex-direction:column;gap:24px;margin-bottom:32px">
+                                <div>
+                                    <p
+                                        style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:4px">
+                                        Active Orders</p>
+                                    <div style="display:flex;align-items:flex-end;gap:8px"><span
+                                            id="admin-active-count"
+                                            style="color:white;font-size:2.5rem;font-family:var(--font-display);font-weight:800">0</span><span
+                                            style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:4px">orders
+                                            in queue</span></div>
+                                </div>
+                                <div>
+                                    <p
+                                        style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:4px">
+                                        Completed Today</p>
+                                    <div style="display:flex;align-items:flex-end;gap:8px"><span
+                                            id="admin-completed-count"
+                                            style="color:white;font-size:2.5rem;font-family:var(--font-display);font-weight:800">0</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p
+                                        style="color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:4px">
+                                        Avg Prep Time</p>
+                                    <div style="display:flex;align-items:flex-end;gap:8px"><span
+                                            style="color:white;font-size:2.5rem;font-family:var(--font-display);font-weight:800">8.5</span><span
+                                            style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-bottom:4px">minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;flex-direction:column;gap:12px">
+                                <button
+                                    style="width:100%;padding:14px;border-radius:16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);color:white;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.3s"
+                                    onmouseover="this.style.background='rgba(255,255,255,0.2)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,0.1)'"><span
+                                        class="material-symbols-outlined" style="font-size:18px">print</span>Print
+                                    Labels</button>
+                                <button
+                                    style="width:100%;padding:14px;border-radius:16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);color:white;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.3s"
+                                    onmouseover="this.style.background='rgba(255,255,255,0.2)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,0.1)'"><span
+                                        class="material-symbols-outlined" style="font-size:18px">history</span>View Past
+                                    Records</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

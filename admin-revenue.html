@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Revenue Analytics | Smart Campus Canteen</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background: #F5F2EE;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .revenue-main {
+            padding-left: 80px;
+            margin-right: 480px;
+            min-height: 100vh;
+        }
+
+        .revenue-content {
+            padding: 48px 32px;
+            max-width: 800px;
+        }
+
+        .toggle-btns {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: #f1f5f9;
+            border-radius: 12px;
+        }
+
+        .toggle-btn {
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-product {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .top-product:hover {
+            border-color: #94a3b8;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 32px;
+        }
+
+        .chart-wave {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Left Sidebar -->
+    <aside class="admin-sidebar-fixed">
+        <div
+            style="width:48px;height:48px;background:var(--color-charcoal);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+            <span class="material-symbols-outlined" style="color:white;font-size:20px">restaurant</span></div>
+        <nav>
+            <a href="admin-dashboard.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">dashboard</span></a>
+            <a href="admin-menu.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">restaurant_menu</span></a>
+            <a href="admin-orders.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">receipt_long</span></a>
+            <a href="admin-revenue.html" class="icon-nav-btn active-filled"><span
+                    class="material-symbols-outlined">trending_up</span></a>
+            <a href="admin-reports.html" class="icon-nav-btn"><span
+                    class="material-symbols-outlined">analytics</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="icon-nav-btn"><span class="material-symbols-outlined">settings</span></a>
+            <a href="index.html" class="icon-nav-btn"><span class="material-symbols-outlined">logout</span></a>
+        </div>
+    </aside>
+
+    <main class="revenue-main">
+        <div class="revenue-content">
+            <div style="margin-bottom:40px">
+                <h2
+                    style="font-size:2.5rem;font-weight:800;font-family:var(--font-display);letter-spacing:-0.03em;font-style:italic;margin-bottom:8px">
+                    Revenue Analytics</h2>
+                <p style="color:#64748b;font-weight:300">Track your financial performance and top products</p>
+            </div>
+
+            <!-- Weekly Performance Chart -->
+            <div class="chart-container">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+                    <h3 style="font-weight:700;font-family:var(--font-display);font-size:1.125rem">Weekly Performance
+                    </h3>
+                    <div class="toggle-btns">
+                        <button class="toggle-btn active">Weekly</button>
+                        <button class="toggle-btn">Monthly</button>
+                    </div>
+                </div>
+                <div class="chart-wave">
+                    <svg viewBox="0 0 700 200" preserveAspectRatio="none" style="width:100%;height:100%">
+                        <defs>
+                            <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:0.15" />
+                                <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <path
+                            d="M0 180 Q50 120 100 140 T200 100 T300 60 T400 80 T500 40 T600 70 T700 50 L700 200 L0 200Z"
+                            fill="url(#grad)" />
+                        <path d="M0 180 Q50 120 100 140 T200 100 T300 60 T400 80 T500 40 T600 70 T700 50" fill="none"
+                            stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" />
+                        <circle cx="0" cy="180" r="5" fill="#1a1a1a" />
+                        <circle cx="100" cy="140" r="5" fill="#1a1a1a" />
+                        <circle cx="200" cy="100" r="5" fill="#1a1a1a" />
+                        <circle cx="300" cy="60" r="5" fill="#1a1a1a" />
+                        <circle cx="400" cy="80" r="5" fill="#1a1a1a" />
+                        <circle cx="500" cy="40" r="5" fill="#c5a059" />
+                        <circle cx="600" cy="70" r="5" fill="#1a1a1a" />
+                        <circle cx="700" cy="50" r="5" fill="#1a1a1a" />
+                    </svg>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;margin-top:8px">
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Mon</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Tue</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Wed</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Thu</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#c5a059;text-transform:uppercase;letter-spacing:0.1em">Fri</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Sat</span>
+                    <span
+                        style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em">Sun</span>
+                </div>
+            </div>
+
+            <!-- Top Selling Products (dynamic) -->
+            <div>
+                <h3 style="font-weight:700;font-family:var(--font-display);font-size:1.125rem;margin-bottom:16px">Top
+                    Selling Products</h3>
+                <div id="rev-top-products" style="display:flex;flex-direction:column;gap:16px">
+                    <!-- Dynamically populated by app.js -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Charcoal Panel (Fixed) -->
+    <div style="width:480px;position:fixed;right:0;top:0;bottom:0;z-index:5">
+            <div style="position:absolute;inset:0;background:#1a1a1a;clip-path:ellipse(85% 100% at 100% 50%)"></div>
+            <div
+                style="position:relative;z-index:10;padding:64px;height:100%;display:flex;flex-direction:column;justify-content:center">
+                <div class="dark-panel-card">
+                    <h3 style="font-size:1.25rem;font-weight:700;font-family:var(--font-display);margin-bottom:32px">
+                        Revenue Summary</h3>
+                    <div style="margin-bottom:32px">
+                        <p
+                            style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.5);margin-bottom:4px">
+                            Today's Revenue</p>
+                        <div style="display:flex;align-items:flex-end;gap:8px">
+                            <span id="rev-today-revenue"
+                                style="font-size:2.5rem;font-weight:800;font-family:var(--font-display)">₹0</span>
+                        </div>
+                        <p
+                            style="font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.15em;margin-top:8px">
+                            From real-time orders</p>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">
+                        <div style="padding:16px;border-radius:16px;background:rgba(255,255,255,0.05)">
+                            <p
+                                style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:4px">
+                                Avg Order</p>
+                            <p id="rev-avg-order" style="font-weight:700;font-size:1.25rem">₹0</p>
+                        </div>
+                        <div style="padding:16px;border-radius:16px;background:rgba(255,255,255,0.05)">
+                            <p
+                                style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:4px">
+                                Total Orders</p>
+                            <p id="rev-total-orders" style="font-weight:700;font-size:1.25rem">0</p>
+                        </div>
+                        <div style="padding:16px;border-radius:16px;background:rgba(255,255,255,0.05)">
+                            <p
+                                style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:4px">
+                                Product Rev</p>
+                            <p id="rev-product-rev" style="font-weight:700;font-size:1.25rem">₹0</p>
+                        </div>
+                        <div style="padding:16px;border-radius:16px;background:rgba(255,255,255,0.05)">
+                            <p
+                                style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:4px">
+                                Fees</p>
+                            <p id="rev-fees" style="font-weight:700;font-size:1.25rem">₹0</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Track Order | Smart Campus Canteen</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        .status-step {
+            padding: 24px;
+            border-radius: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .status-step.completed {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .status-step.active {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .status-step.pending {
+            opacity: 0.5;
+        }
+
+        .status-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .status-icon.done {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .status-icon.in-progress {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .status-icon.waiting {
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
+
+        .countdown-box {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .countdown-box .time {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            font-family: var(--font-display);
+            line-height: 1;
+        }
+
+        .countdown-box .time-sep {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 4px;
+        }
+
+        .countdown-box .label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body class="student-page">
+    <div class="grain-texture"></div>
+    <div class="bg-shape hide-mobile" style="opacity:0.95"></div>
+
+    <!-- Header -->
+    <header class="student-header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><span class="material-symbols-outlined" style="font-size:20px">restaurant</span>
+                </div>
+                <h1 class="logo-text hide-mobile">Crave It</h1>
+            </a>
+            <div class="search-bar">
+                <div class="search-wrapper">
+                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input class="search-input" placeholder="Discover your next favorite meal..." type="text" />
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn"><span class="material-symbols-outlined"
+                        style="color:#475569">notifications</span><span class="notification-dot"></span></button>
+                <div style="position:relative"><button class="icon-btn"><span class="material-symbols-outlined"
+                            style="color:#475569">shopping_cart</span><span class="cart-badge" id="cart-badge" style="display:none">0</span></button></div>
+                <button class="profile-btn"><span class="material-symbols-outlined"
+                        style="color:#94a3b8">person</span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="student-main">
+        <div class="student-layout">
+            <div class="student-content">
+                <div class="page-heading">
+                    <h2>Track Order</h2>
+                    <p>Your order #ORD-0284 is being prepared fresh. We'll notify you when it's ready.</p>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:16px">
+                    <!-- Step 1: Order Placed -->
+                    <div class="status-step completed">
+                        <div class="status-icon done">
+                            <span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                        <div style="flex:1">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                                <h4 style="font-weight:700;font-size:1rem">Order Placed</h4>
+                                <span id="order-placed-time"
+                                    style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.15em">12:22
+                                    PM</span>
+                            </div>
+                            <p style="color:#64748b;font-size:0.875rem;font-weight:300">Your order has been confirmed
+                                and sent to the kitchen.</p>
+                        </div>
+                    </div>
+
+                    <!-- Connector -->
+                    <div style="display:flex;justify-content:center">
+                        <div style="width:2px;height:32px;background:rgba(0,0,0,0.08)"></div>
+                    </div>
+
+                    <!-- Step 2: Preparing -->
+                    <div class="status-step active">
+                        <div class="status-icon in-progress">
+                            <span class="material-symbols-outlined">skillet</span>
+                        </div>
+                        <div style="flex:1">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                                <h4 style="font-weight:700;font-size:1rem">Preparing Your Food</h4>
+                                <span
+                                    style="font-size:10px;font-weight:700;color:#c5a059;text-transform:uppercase;letter-spacing:0.15em"
+                                    class="animate-pulse">In Progress</span>
+                            </div>
+                            <p style="color:#64748b;font-size:0.875rem;font-weight:300">The kitchen is crafting your
+                                meal with fresh ingredients.</p>
+                        </div>
+                    </div>
+
+                    <!-- Connector -->
+                    <div style="display:flex;justify-content:center">
+                        <div style="width:2px;height:32px;background:rgba(0,0,0,0.08)"></div>
+                    </div>
+
+                    <!-- Step 3: Ready -->
+                    <div class="status-step pending">
+                        <div class="status-icon waiting">
+                            <span class="material-symbols-outlined">takeout_dining</span>
+                        </div>
+                        <div style="flex:1">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+                                <h4 style="font-weight:700;font-size:1rem">Ready for Pickup</h4>
+                                <span
+                                    style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.15em">Est.
+                                    12:45 PM</span>
+                            </div>
+                            <p style="color:#94a3b8;font-size:0.875rem;font-weight:300">Head to the pickup counter when
+                                notified.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <aside class="student-sidebar">
+                <div class="glass-card"
+                    style="border-radius:30px;padding:40px;position:sticky;top:112px;background:rgba(255,255,255,0.1);backdrop-filter:blur(48px)">
+                    <!-- Countdown -->
+                    <div class="countdown-box">
+                        <div
+                            style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.5);margin-bottom:16px">
+                            Estimated Pickup</div>
+                        <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+                            <span class="time" id="countdown-min">12</span>
+                            <span class="time time-sep">:</span>
+                            <span class="time" id="countdown-sec">45</span>
+                        </div>
+                        <div class="label" style="margin-top:12px">minutes remaining</div>
+                    </div>
+
+                    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-bottom:24px">
+                        <div
+                            style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.5);margin-bottom:16px">
+                            Order Details</div>
+                        <div id="order-items" style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px">
+                        </div>
+                    </div>
+
+                    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-bottom:32px">
+                        <div
+                            style="display:flex;justify-content:space-between;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">
+                            <span>Subtotal</span><span id="order-subtotal">₹0</span></div>
+                        <div
+                            style="display:flex;justify-content:space-between;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:12px">
+                            <span>Convenience</span><span id="order-convenience">₹0</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-top:8px">
+                            <span
+                                style="font-size:0.875rem;font-weight:700;color:white;text-transform:uppercase;letter-spacing:0.15em">Total</span><span
+                                id="order-total" style="font-size:1.875rem;font-weight:800;color:white;font-family:var(--font-display)">₹0</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-premium"
+                        style="width:100%;padding:16px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);"
+                        onmouseover="this.style.background='white';this.style.color='#1a1a1a'"
+                        onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.color='#fdfbf7'">
+                        <span class="material-symbols-outlined"
+                            style="font-size:18px;margin-right:8px">headset_mic</span>Help Desk
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
