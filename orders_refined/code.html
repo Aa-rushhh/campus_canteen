@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orders Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D2D2D",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a1a1a",
+                        "charcoal": "#2D2D2D",
+                        "warm-beige": "#F5F2EE"
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }</script>
+<style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .leaf-pattern {
+            opacity: 0.05;
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-warm-beige text-slate-900 min-h-screen overflow-x-hidden relative">
+<!-- Subtle Leaf Illustrations -->
+<div class="leaf-pattern top-10 left-10 w-64 h-64"><div class="w-96 h-96 bg-charcoal/5 rounded-full blur-3xl -ml-48 -mt-24"></div></div>
+<div class="relative flex h-screen w-full overflow-hidden">
+<!-- Main Content Area (Left Side) -->
+<nav class="w-24 bg-white border-r border-slate-100 flex flex-col items-center py-8 gap-8 z-20">
+<div class="w-12 h-12 bg-charcoal rounded-2xl flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<div class="flex flex-col gap-6">
+<button class="p-3 text-slate-400 hover:text-charcoal transition-colors">
+<span class="material-symbols-outlined">restaurant_menu</span>
+</button>
+<button class="p-3 text-charcoal bg-slate-100 rounded-xl">
+<span class="material-symbols-outlined">list_alt</span>
+</button>
+<button class="p-3 text-slate-400 hover:text-charcoal transition-colors">
+<span class="material-symbols-outlined">group</span>
+</button>
+<button class="p-3 text-slate-400 hover:text-charcoal transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+<button class="p-3 text-slate-400 hover:text-charcoal transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="mt-auto">
+<button class="p-3 text-red-400 hover:text-red-600 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</nav><main class="flex-1 flex flex-col p-8 lg:p-12 overflow-y-auto z-10 relative">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between mb-12">
+<div class="flex items-center gap-4">
+<div class="bg-charcoal p-2 rounded-xl text-white">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<h2 class="heading-font text-2xl font-bold tracking-tight">Campus Cafe</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-white border-none rounded-full shadow-sm focus:ring-2 focus:ring-primary/50 w-64 text-sm" placeholder="Search orders..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-sm text-slate-600">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Admin user profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmuS5uGSY9Ur5ek5--lSroMnLDvgp_p3GSZ6eUCTIgwcsI8wiFE0lQU57Jgucr_-xiCFGTAH_k92_iaZ7Y2i4PqsEO9ZH37vY8a7N5od_mp2xq7nBjNFRzPqZyJ2qjlZJ4SVASMUs11CMUOSlk_uKbiMKDb7Xr35V34SiYtiy0EFx8_jRjxPp3RsPt0HKxHIqUPlycil6LsSL7P9y-oWgmNC7vDiWT4KICcFm61JF0_uNkzhxRW226o5zc4HRJwiJwx0N8kR6ecU"/>
+</div>
+</div>
+</header>
+<div class="mb-8">
+<h1 class="heading-font text-5xl font-bold text-slate-900 mb-2">Orders</h1>
+<p class="text-slate-500 font-light">Manage and track live student campus orders</p>
+</div>
+<!-- Orders Table Container -->
+<div class="bg-white/40 backdrop-blur-md rounded-2xl shadow-xl border border-white/40 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white/20 border-b border-white/20">
+<th class="px-6 py-4 text-sm font-semibold text-slate-600">Order ID</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-600">Student Name</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-600">Items Ordered</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-600">Pickup Time</th>
+<th class="px-6 py-4 text-sm font-semibold text-slate-600">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-slate-900">#1204</td>
+<td class="px-6 py-5 text-sm text-slate-600">Emily Johnson</td>
+<td class="px-6 py-5 text-sm text-slate-500 italic">Caramel Latte, Butter Croissant</td>
+<td class="px-6 py-5 text-sm text-slate-600">10:15 AM</td>
+<td class="px-6 py-5 text-sm">
+<span class="px-4 py-1.5 rounded-full bg-white/30 backdrop-blur-sm text-slate-700 border border-white/50 text-xs font-bold uppercase tracking-wider">Preparing</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-slate-900">#1203</td>
+<td class="px-6 py-5 text-sm text-slate-600">Michael Chen</td>
+<td class="px-6 py-5 text-sm text-slate-500 italic">Avocado Toast, Matcha Latte</td>
+<td class="px-6 py-5 text-sm text-slate-600">10:30 AM</td>
+<td class="px-6 py-5 text-sm">
+<span class="px-4 py-1.5 rounded-full bg-slate-800/10 backdrop-blur-sm text-slate-800 border border-slate-800/20 text-xs font-bold uppercase tracking-wider">Ready</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-slate-900">#1202</td>
+<td class="px-6 py-5 text-sm text-slate-600">Sarah Gumede</td>
+<td class="px-6 py-5 text-sm text-slate-500 italic">Iced Americano (Large)</td>
+<td class="px-6 py-5 text-sm text-slate-600">10:45 AM</td>
+<td class="px-6 py-5 text-sm">
+<span class="px-4 py-1.5 rounded-full bg-emerald-500/10 backdrop-blur-sm text-emerald-800 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-slate-900">#1201</td>
+<td class="px-6 py-5 text-sm text-slate-600">James Wilson</td>
+<td class="px-6 py-5 text-sm text-slate-500 italic">Blueberry Muffin, Flat White</td>
+<td class="px-6 py-5 text-sm text-slate-600">11:00 AM</td>
+<td class="px-6 py-5 text-sm">
+<span class="px-4 py-1.5 rounded-full bg-white/30 backdrop-blur-sm text-slate-700 border border-white/50 text-xs font-bold uppercase tracking-wider">Preparing</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/30 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-slate-900">#1200</td>
+<td class="px-6 py-5 text-sm text-slate-600">Lara Croft</td>
+<td class="px-6 py-5 text-sm text-slate-500 italic">English Breakfast Tea</td>
+<td class="px-6 py-5 text-sm text-slate-600">11:15 AM</td>
+<td class="px-6 py-5 text-sm">
+<span class="px-4 py-1.5 rounded-full bg-emerald-500/10 backdrop-blur-sm text-emerald-800 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">Completed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-white/10 border-t border-white/20 flex items-center justify-between">
+<p class="text-xs text-slate-500">Showing 5 of 42 orders</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded-lg border border-slate-200 text-xs font-medium bg-white hover:bg-slate-50">Previous</button>
+<button class="px-3 py-1 rounded-lg border border-slate-200 text-xs font-medium bg-white hover:bg-slate-50">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Large Curved Charcoal Panel (Right Side) -->
+<aside class="hidden lg:flex w-[500px] bg-charcoal relative flex-col items-center justify-center p-8 shadow-2xl z-0" style="clip-path: ellipse(80% 120% at 100% 50%); margin-left: -100px; padding-left: 150px;">
+<!-- Summary Card Inside Panel -->
+<div class="bg-white/5 backdrop-blur-md border border-white/10 w-full p-8 text-white shadow-xl relative overflow-hidden rounded-[40px]">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+<h3 class="heading-font text-2xl mb-8 relative z-10">Order Summary</h3>
+<div class="space-y-6 relative z-10">
+<!-- Stat 1 -->
+<div class="flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-charcoal flex items-center justify-center shadow-lg shadow-black/20">
+<span class="material-symbols-outlined text-white">pending_actions</span>
+</div>
+<div>
+<p class="text-white/60 text-xs font-medium uppercase tracking-widest">Active Orders</p>
+<p class="text-3xl font-bold">14</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/20">chevron_right</span>
+</div>
+<!-- Stat 2 -->
+<div class="flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center shadow-lg shadow-green-500/20">
+<span class="material-symbols-outlined text-white">task_alt</span>
+</div>
+<div>
+<p class="text-white/60 text-xs font-medium uppercase tracking-widest">Completed Today</p>
+<p class="text-3xl font-bold">128</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/20">chevron_right</span>
+</div>
+<!-- Stat 3 -->
+<div class="flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
+<span class="material-symbols-outlined text-white">speed</span>
+</div>
+<div>
+<p class="text-white/60 text-xs font-medium uppercase tracking-widest">Avg. Prep Time</p>
+<p class="text-3xl font-bold">8.5<span class="text-sm font-normal text-white/40 ml-1">min</span></p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/20">chevron_right</span>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10">
+<p class="text-sm text-white/50 mb-4">Quick Actions</p>
+<button class="w-full py-4 bg-black hover:bg-slate-900 text-white rounded-full font-bold shadow-lg shadow-black/30 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">print</span>
+                        Print Morning Labels
+                    </button>
+<button class="w-full mt-3 py-4 bg-white/10 hover:bg-white/20 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">history</span>
+                        View Past Records
+                    </button>
+</div>
+</div>
+<!-- Leaf Accent in Dark Panel -->
+<div class="absolute bottom-10 right-10 opacity-5 text-white w-24 h-24 rounded-[40px]">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M100,0 Q120,40 160,40 T160,100 T100,160 T40,100 T40,40 Q80,40 100,0" fill="currentColor"></path>
+</svg>
+</div>
+</aside>
+</div>
+</body></html>

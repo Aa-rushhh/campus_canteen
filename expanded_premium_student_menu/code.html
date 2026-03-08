@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Smart Campus Canteen - Student Menu</title><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#1a1a1a", "accent": "#fdfbf7", "muted-gold": "#c5a059", "background-light": "#FDFBF7", "background-dark": "#1a1a1a", }, fontFamily: { "display": ["Playfair Display", "serif"], "sans": ["Inter", "sans-serif"] }, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "20px": "20px", "30px": "30px", "full": "9999px"}, }, }, }</script><style>.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5)
+    }
+.card-shadow {
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.05)
+    }
+.card-hover:hover {
+    transform: translatey(-8px);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1)
+    }
+.bg-shape {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 65vw;
+    height: 130vh;
+    background: linear-gradient(145deg, #111 0%, #222 100%);
+    clip-path: ellipse(80% 100% at 100% 0%);
+    z-index: -1;
+    transform: rotate(-2deg)
+    }
+.grain-texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA4vMc9gwOKEjoaJ1IHsmmukzLKA7deilehdqLCSofrOBma-9m5EX4kcyEwI35nmYolYET7rDJYopH1_ZdYH6-2X_ffglz6lovN1C_OfjHW2i4MKZHLkPwPzSuq7LEHTNUvtG3GKBaxHqT0bEVd2mxDfQ1Uk_htZvGel1rOXgxtvY9ohMy6SXIvK_rHT-iZkw5kddl5UgMKwbnzcIDPiiMmtDO-fTOP-R5udWA23CYaiYKjyvQkiA9VQYposTD2ydDUCmNVhcae7gg)
+    }
+.floating-dots {
+    background-image: radial-gradient(#1a1a1a 0.5px, transparent 0.5px);
+    background-size: 32px 32px;
+    opacity: 0.08
+    }
+.btn-premium {
+    background: #1a1a1a;
+    color: #fdfbf7;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    letter-spacing: 0.15em
+    }
+.btn-premium:hover {
+    background: #000;
+    transform: translatey(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2)
+    }
+.filter-chip {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: white;
+    color: #888;
+    transition: all 0.4s ease
+    }
+.filter-chip.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a
+    }
+.image-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none
+    }
+.abstract-line {
+    position: absolute;
+    border: 0.5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 60% 40% 70% 30%/40% 50% 60% 40%;
+    pointer-events: none;
+    z-index: -1
+    }
+.ingredient-float {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(1px)
+    }
+.splash-bg {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle at center, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none
+    }</style></head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-sans"><div class="grain-texture"></div><div class="napkin-shape" style="width: 400px; height: 400px; background: #fff; border-radius: 80px; transform: rotate(35deg); position: fixed; bottom: -180px; left: -180px; z-index: -1; opacity: 0.4; box-shadow: 0 0 80px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.02);"></div><div class="abstract-line" style="width: 600px; height: 600px; top: 10%; left: -100px;"></div><div class="abstract-line" style="width: 400px; height: 400px; bottom: 10%; left: 20%;"></div><div class="bg-shape hidden lg:block opacity-95"></div><div class="fixed inset-0 floating-dots pointer-events-none -z-10"></div>
+<header class="sticky top-0 z-50 bg-background-light/70 backdrop-blur-xl border-b border-black/[0.03]"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between gap-8"><div class="flex items-center gap-4 shrink-0"><div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-accent shadow-lg shadow-black/10"><span class="material-symbols-outlined text-[20px]">restaurant</span></div><h1 class="text-xl font-extrabold tracking-tight hidden md:block font-display uppercase">Smart Canteen</h1></div><div class="flex-1 max-w-2xl"><div class="relative group"><span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors text-[20px]">search</span><input class="w-full bg-white/80 border-none focus:ring-2 focus:ring-primary/5 rounded-20px pl-12 pr-6 py-3 text-sm transition-all shadow-sm" placeholder="Discover your next favorite meal..." type="text"/></div></div><div class="flex items-center gap-4"><button class="flex items-center gap-2 px-4 py-2 hover:bg-black/5 rounded-full transition-all text-slate-600"><span class="material-symbols-outlined text-[20px]">tune</span><span class="text-xs font-bold uppercase tracking-widest">Filter</span></button><div class="relative"><button class="p-3 hover:bg-black/5 rounded-full transition-all relative"><span class="material-symbols-outlined text-slate-600">shopping_cart</span><span class="absolute -top-1 -right-1 w-5 h-5 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">2</span></button></div><button class="p-2 border-2 border-black/5 rounded-full overflow-hidden"><span class="material-symbols-outlined text-slate-400">person</span></button></div></div></header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col lg:flex-row gap-8">
+<div class="flex-1"><div class="mb-12"><h2 class="text-5xl font-extrabold mb-4 font-display tracking-tight text-slate-900 tracking-[-0.03em] italic">Student Menu</h2><p class="text-slate-500 max-w-lg leading-relaxed font-light">Artisanally prepared fresh meals curated for the modern campus lifestyle.</p></div><div class="flex gap-4 mb-12 overflow-x-auto pb-4 scrollbar-hide"><button class="px-8 py-3 filter-chip active rounded-full text-xs font-bold uppercase tracking-widest tracking-[0.15em]">All Items</button><button class="px-8 py-3 filter-chip rounded-full text-xs font-bold uppercase tracking-widest tracking-[0.15em]">Breakfast</button><button class="px-8 py-3 filter-chip rounded-full text-xs font-bold uppercase tracking-widest tracking-[0.15em]">Lunch Special</button><button class="px-8 py-3 filter-chip rounded-full text-xs font-bold uppercase tracking-widest tracking-[0.15em]">Evening Snacks</button><button class="px-8 py-3 filter-chip rounded-full text-xs font-bold uppercase tracking-widest tracking-[0.15em]">Beverages</button></div><div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"><!-- Breakfast Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Avocado<br/>Toast</h3><span class="text-primary font-extrabold text-xl">₹140</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Sourdough topped with smashed avocado, chili flakes, and radish.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Breakfast</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Classic<br/>Pancakes</h3><span class="text-primary font-extrabold text-xl">₹120</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Fluffy buttermilk pancakes served with maple syrup and butter.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Breakfast</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Veg Omelette<br/>Sandwich</h3><span class="text-primary font-extrabold text-xl">₹110</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Egg-free omelette made with chickpea flour in toasted brioche.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Breakfast</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Greek Yogurt<br/>Bowl</h3><span class="text-primary font-extrabold text-xl">₹130</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Creamy yogurt with honey, granola, and fresh seasonal berries.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Breakfast</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Masala<br/>Poha</h3><span class="text-primary font-extrabold text-xl">₹90</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Flattened rice tempered with peanuts, curry leaves, and spices.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Breakfast</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<!-- Lunch Special Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chicken Caesar<br/>Wrap</h3><span class="text-primary font-extrabold text-xl">₹160</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Grilled chicken, romaine lettuce, and parmesan in a flour tortilla.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lunch Special</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Paneer Burrito<br/>Bowl</h3><span class="text-primary font-extrabold text-xl">₹150</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Spiced paneer, cilantro lime rice, black beans, and salsa fresca.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lunch Special</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Spicy Veg<br/>Quesadilla</h3><span class="text-primary font-extrabold text-xl">₹140</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Toasted tortilla filled with spicy peppers, corn, and melted cheese.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lunch Special</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Teriyaki Chicken<br/>Rice Bowl</h3><span class="text-primary font-extrabold text-xl">₹170</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Grilled teriyaki chicken served over steamed jasmine rice and broccoli.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lunch Special</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Falafel Pita<br/>Pocket</h3><span class="text-primary font-extrabold text-xl">₹150</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Golden falafel balls with hummus, pickled veg, and tahini in warm pita.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lunch Special</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<!-- Evening Snacks Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Loaded<br/>Nachos</h3><span class="text-primary font-extrabold text-xl">₹120</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Corn chips topped with cheese sauce, jalapeños, and sour cream.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Evening Snacks</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Peri Peri<br/>Fries</h3><span class="text-primary font-extrabold text-xl">₹110</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Crispy golden fries tossed in spicy peri-peri seasoning.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Evening Snacks</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Veg<br/>Momos</h3><span class="text-primary font-extrabold text-xl">₹100</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Steamed dumplings filled with finely chopped seasonal vegetables.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Evening Snacks</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chicken<br/>Popcorn</h3><span class="text-primary font-extrabold text-xl">₹140</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Bite-sized pieces of breaded and deep-fried tender chicken.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Evening Snacks</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Cheese Garlic<br/>Bread</h3><span class="text-primary font-extrabold text-xl">₹130</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Artisanal bread toasted with garlic butter and melted mozzarella.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Evening Snacks</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<!-- Beverages Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Cold<br/>Coffee</h3><span class="text-primary font-extrabold text-xl">₹90</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Classic chilled espresso blended with milk and creamy foam.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Beverages</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Iced Matcha<br/>Latte</h3><span class="text-primary font-extrabold text-xl">₹120</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Premium stone-ground green tea whisked with cold milk.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Beverages</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Fresh Lemon<br/>Soda</h3><span class="text-primary font-extrabold text-xl">₹70</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Refreshing fizzy drink with hand-pressed lemons and salt.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Beverages</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Mango<br/>Smoothie</h3><span class="text-primary font-extrabold text-xl">₹110</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Seasonal fresh mangoes blended with Greek yogurt and honey.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Beverages</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-3"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chocolate<br/>Milkshake</h3><span class="text-primary font-extrabold text-xl">₹130</span></div>
+<p class="text-slate-500 text-sm mb-6 leading-relaxed font-light">Rich dark chocolate ganache blended with creamy milk and ice cream.</p>
+<div class="flex items-center justify-between"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Beverages</span><button class="btn-premium px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.1em]">Add to Cart</button></div>
+</div>
+</div></div></div>
+<aside class="w-full lg:w-[400px] shrink-0"><div class="glass-card rounded-30px p-10 sticky top-28 border-white/50 shadow-3xl bg-white/40 backdrop-blur-3xl"><div class="flex items-end justify-between mb-10"><h3 class="text-2xl font-bold font-display tracking-tight">Your Order</h3><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">2 Selected</span></div><div class="space-y-8 mb-12"><div class="flex gap-5"><div class="w-20 h-20 rounded-2xl bg-cover bg-center shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div><div class="flex-1 py-1"><div class="flex justify-between items-start mb-2"><h4 class="font-bold text-sm text-slate-800">Mediterranean Bowl</h4><button class="text-slate-300 hover:text-red-400 transition-colors"><span class="material-symbols-outlined text-[18px]">close</span></button></div><div class="flex items-center justify-between"><div class="flex items-center gap-4 bg-white/50 rounded-full px-4 py-1.5 border border-black/[0.03]"><button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">-</button><span class="text-xs font-bold">1</span><button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">+</button></div><span class="text-sm font-bold tracking-tight text-primary">₹180</span></div></div></div><div class="flex gap-5"><div class="w-20 h-20 rounded-2xl bg-cover bg-center shadow-lg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div><div class="flex-1 py-1"><div class="flex justify-between items-start mb-2"><h4 class="font-bold text-sm text-slate-800">Chicken Burger</h4><button class="text-slate-300 hover:text-red-400 transition-colors"><span class="material-symbols-outlined text-[18px]">close</span></button></div><div class="flex items-center justify-between"><div class="flex items-center gap-4 bg-white/50 rounded-full px-4 py-1.5 border border-black/[0.03]"><button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">-</button><span class="text-xs font-bold">1</span><button class="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">+</button></div><span class="text-sm font-bold tracking-tight text-primary">₹145</span></div></div></div></div><div class="border-t border-black/[0.05] pt-8 space-y-4 mb-10"><div class="flex justify-between text-slate-400 text-[11px] font-bold uppercase tracking-widest"><span>Subtotal</span><span>₹325</span></div><div class="flex justify-between text-slate-400 text-[11px] font-bold uppercase tracking-widest"><span>Convenience</span><span>₹15</span></div><div class="flex justify-between items-end pt-2"><span class="text-sm font-bold text-slate-900 uppercase tracking-widest">Total</span><span class="text-3xl font-extrabold text-primary font-display">₹340</span></div></div><button class="w-full btn-premium py-5 rounded-20px text-xs font-bold uppercase tracking-[0.2em] shadow-xl shadow-black/10">Complete Checkout</button><p class="text-[10px] text-center text-slate-400 mt-6 uppercase tracking-[0.15em] font-medium opacity-60">Skip the queue with mobile pre-order</p></div></aside>
+</div>
+</main>
+<div class="ingredient-float text-primary" style="top: 15%; left: 5%; transform: rotate(15deg)"><span class="material-symbols-outlined text-4xl">eco</span></div><div class="ingredient-float text-primary" style="bottom: 20%; left: 40%; transform: rotate(-10deg)"><span class="material-symbols-outlined text-2xl">grain</span></div><div class="ingredient-float text-white/10" style="top: 25%; right: 10%; transform: rotate(45deg)"><span class="material-symbols-outlined text-5xl">spa</span></div><div class="abstract-line" style="width: 800px; height: 800px; top: -10%; right: -200px; transform: rotate(15deg);"></div><div class="ingredient-float" style="top: 12%; left: 35%; transform: rotate(-25deg); color: #8a9a5b; opacity: 0.12;"><span class="material-symbols-outlined text-4xl">eco</span></div><div class="ingredient-float" style="top: 45%; left: 10%; transform: rotate(140deg); color: #708238; opacity: 0.08;"><span class="material-symbols-outlined text-5xl">spa</span></div><div class="ingredient-float" style="bottom: 8%; left: 5%; transform: rotate(45deg); color: #4b5320; opacity: 0.1;"><span class="material-symbols-outlined text-3xl">psychiatry</span></div><div class="ingredient-float" style="top: 30%; right: 28%; transform: rotate(-15deg); color: #8ba888; opacity: 0.07; z-index: -1;"><span class="material-symbols-outlined text-6xl">eco</span></div><div class="ingredient-float" style="bottom: 35%; left: 45%; transform: rotate(200deg); color: #9ab973; opacity: 0.09;"><span class="material-symbols-outlined text-2xl">spa</span></div><div class="ingredient-float" style="top: 15%; right: 5%; transform: rotate(60deg); color: #fdfbf7; opacity: 0.05;"><span class="material-symbols-outlined text-4xl">eco</span></div><div class="fixed bottom-[-50px] left-[-50px] w-80 h-80 bg-[#f9f7f2] rotate-12 shadow-[10px_10px_40px_rgba(0,0,0,0.03)] border border-black/5 rounded-[40px] -z-20 opacity-60"></div><div class="ingredient-float text-[#4a5d23]" style="top: 25%; left: 3%; transform: rotate(-30deg); opacity: 0.15; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));"><span class="material-symbols-outlined text-6xl">spa</span></div><div class="ingredient-float text-[#5d7a3a]" style="top: 8%; left: 10%; transform: rotate(45deg); opacity: 0.1; filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.1));"><span class="material-symbols-outlined text-3xl">eco</span></div><div class="ingredient-float text-[#3e4d1d]" style="bottom: 30%; left: 2%; transform: rotate(110deg); opacity: 0.12; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15));"><span class="material-symbols-outlined text-4xl">psychiatry</span></div><div class="fixed top-[40%] left-[5%] w-1.5 h-1.5 bg-slate-800 rounded-full opacity-10 shadow-sm -z-10"></div><div class="fixed top-[42%] left-[4%] w-1 h-1 bg-slate-700 rounded-full opacity-10 shadow-sm -z-10"></div><div class="fixed bottom-[15%] left-[8%] w-1.5 h-1.5 bg-slate-900 rounded-full opacity-10 shadow-sm -z-10"></div><div class="fixed bottom-[18%] left-[6%] w-1 h-1 bg-slate-800 rounded-full opacity-10 shadow-sm -z-10"></div><div class="ingredient-float text-[#7a8a5b]" style="top: 48%; left: 5%; transform: rotate(-15deg); opacity: 0.08;"><span class="material-symbols-outlined text-2xl">eco</span></div></body></html>

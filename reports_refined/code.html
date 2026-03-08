@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports &amp; Insights - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Poppins:wght@300;400;500;600&amp;family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2d2d2d",
+                        "accent-charcoal": "#1a1a1a",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#121212",
+                        "charcoal": "#2d2d2d",
+                        "beige-accent": "#f2eee9"
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"],
+                        "body": ["Poppins", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }</script>
+<style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .leaf-pattern {
+            opacity: 0.05;
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
+        }
+    </style>
+<style>
+    .rounded-30px { border-radius: 30px; }
+</style></head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+<!-- Background Illustrations -->
+<div class="leaf-pattern top-10 left-10">
+<svg fill="none" height="200" viewbox="0 0 100 100" width="200" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 90C10 90 40 85 60 60C80 35 90 10 90 10M90 10C90 10 65 20 40 40C15 60 10 90 10 90" stroke="currentColor" stroke-width="0.5"></path>
+<path d="M30 70L25 55M50 50L40 35M70 30L65 15" stroke="currentColor" stroke-width="0.5"></path>
+</svg>
+</div>
+<div class="flex flex-col lg:flex-row min-h-screen">
+<!-- Left Side: Reports Content -->
+<main class="flex-1 px-8 py-12 lg:px-20 lg:py-16 relative z-10 pl-32">
+<div class="max-w-4xl">
+<header class="mb-12">
+<div class="flex items-center gap-2 mb-4 text-charcoal">
+<span class="material-symbols-outlined">analytics</span>
+<span class="uppercase tracking-widest text-xs font-semibold">Performance Metrics</span>
+</div>
+<h1 class="heading-font text-5xl font-bold text-slate-900 dark:text-white mb-4">Reports &amp; Insights</h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-lg">Comprehensive overview of your restaurant's operational trends and customer preferences.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Peak Ordering Times -->
+<div class="bg-white/40 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-white/40">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-semibold text-lg">Peak Ordering Times</h3>
+<span class="material-symbols-outlined text-slate-400">schedule</span>
+</div>
+<div class="flex items-end gap-2 h-32 mb-4">
+<div class="bg-charcoal/10 w-full rounded-t-lg" style="height: 30%"></div>
+<div class="bg-charcoal/20 w-full rounded-t-lg" style="height: 45%"></div>
+<div class="bg-charcoal/80 w-full rounded-t-lg" style="height: 90%"></div>
+<div class="bg-charcoal w-full rounded-t-lg" style="height: 100%"></div>
+<div class="bg-charcoal/60 w-full rounded-t-lg" style="height: 60%"></div>
+<div class="bg-charcoal/20 w-full rounded-t-lg" style="height: 40%"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-400 font-medium px-1">
+<span>10am</span>
+<span>12pm</span>
+<span>2pm</span>
+<span>4pm</span>
+<span>6pm</span>
+<span>8pm</span>
+</div>
+</div>
+<!-- Busiest Day -->
+<div class="bg-white/40 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-white/40">
+<div class="flex justify-between items-start mb-6">
+<h3 class="font-semibold text-lg">Weekly Volume</h3>
+<span class="material-symbols-outlined text-slate-400">calendar_month</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="text-xs font-medium w-8">Fri</span>
+<div class="flex-1 bg-white/50 h-2 rounded-full overflow-hidden">
+<div class="bg-charcoal h-full w-[95%]"></div>
+</div>
+<span class="text-xs font-semibold">95%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-medium w-8">Sat</span>
+<div class="flex-1 bg-white/50 h-2 rounded-full overflow-hidden">
+<div class="bg-charcoal h-full w-[88%]"></div>
+</div>
+<span class="text-xs font-semibold">88%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-medium w-8">Sun</span>
+<div class="flex-1 bg-white/50 h-2 rounded-full overflow-hidden">
+<div class="bg-charcoal h-full w-[72%]"></div>
+</div>
+<span class="text-xs font-semibold">72%</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-medium w-8">Mon</span>
+<div class="flex-1 bg-white/50 h-2 rounded-full overflow-hidden">
+<div class="bg-charcoal/40 h-full w-[45%]"></div>
+</div>
+<span class="text-xs font-semibold">45%</span>
+</div>
+</div>
+</div>
+<!-- Top Menu Items -->
+<div class="md:col-span-2 bg-white/40 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-white/40">
+<h3 class="font-semibold text-lg mb-6">Most Ordered Menu Items</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-charcoal/10 flex items-center justify-center text-charcoal">
+<span class="material-symbols-outlined">lunch_dining</span>
+</div>
+<div>
+<p class="font-medium text-sm">Classic Burger</p>
+<p class="text-charcoal text-xs font-bold">1,240 sold</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-charcoal/10 flex items-center justify-center text-charcoal">
+<span class="material-symbols-outlined">local_pizza</span>
+</div>
+<div>
+<p class="font-medium text-sm">Truffle Pizza</p>
+<p class="text-charcoal text-xs font-bold">980 sold</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-charcoal/10 flex items-center justify-center text-charcoal">
+<span class="material-symbols-outlined">icecream</span>
+</div>
+<div>
+<p class="font-medium text-sm">Berry Gelato</p>
+<p class="text-charcoal text-xs font-bold">850 sold</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<button class="bg-primary text-white px-8 py-3 rounded-full font-medium shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity bg-charcoal shadow-charcoal/20">
+                        Download PDF Report
+                    </button>
+<button class="dark:bg-slate-800 text-slate-900 dark:text-white px-8 py-3 rounded-full font-medium border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors bg-white/40 backdrop-blur-sm border-white/40">
+                        Share Insights
+                    </button>
+</div>
+</div>
+</main>
+<!-- Right Side: Charcoal Curved Panel -->
+<aside class="w-full lg:w-[480px] relative lg:min-h-screen">
+<div class="absolute inset-0 bg-[#1a1a1a] z-0" style="clip-path: ellipse(85% 100% at 100% 50%);"></div>
+<div class="relative z-10 p-8 lg:p-16 h-full flex flex-col justify-center">
+<!-- Floating Card -->
+<div class="glass-card rounded-30px p-10 border-white/20 shadow-3xl bg-white/5 backdrop-blur-3xl border border-white/10 text-white">
+<div class="size-12 rounded-2xl flex items-center justify-center mb-8 bg-black/40 border border-white/10">
+<span class="material-symbols-outlined text-white">lightbulb</span>
+</div>
+<h2 class="heading-font text-3xl font-bold mb-8">Quick Insights</h2>
+<div class="space-y-10">
+<div>
+<p class="text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold mb-3">Peak Demand</p>
+<p class="text-xl font-medium leading-relaxed">Demand surges between <span class="text-white border-b border-white/20 pb-0.5">12 PM – 1 PM</span> daily.</p>
+</div>
+<div class="h-px bg-white/5 w-full"></div>
+<div>
+<p class="text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold mb-3">Customer Loyalty</p>
+<p class="text-xl font-medium leading-relaxed">Repeat customers have increased by <span class="text-white border-b border-white/20 pb-0.5">12%</span> this month.</p>
+</div>
+<div class="h-px bg-white/5 w-full"></div>
+<div>
+<p class="text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold mb-3">Inventory Alert</p>
+<p class="text-xl font-medium leading-relaxed">Consider increasing stock for <span class="text-white border-b border-white/20 pb-0.5">Classic Burger</span> ingredients for weekends.</p>
+</div>
+</div>
+<div class="mt-12">
+<button class="w-full bg-white text-charcoal py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-beige-accent transition-all flex items-center justify-center gap-3">
+                    View Full Analysis
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Navigation Overlay -->
+<header class="fixed top-0 left-0 h-full w-24 z-50 bg-background-light/70 backdrop-blur-xl border-r border-black/[0.03] flex flex-col items-center py-8 gap-8">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-accent shadow-lg shadow-black/10 shrink-0">
+<span class="material-symbols-outlined text-[24px]">restaurant</span>
+</div>
+<nav class="flex-1 flex flex-col gap-6">
+<button class="p-3 hover:bg-black/5 rounded-2xl transition-all text-slate-400">
+<span class="material-symbols-outlined">dashboard</span>
+</button>
+<button class="p-3 bg-primary text-white rounded-2xl transition-all shadow-lg shadow-black/10">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+<button class="p-3 hover:bg-black/5 rounded-2xl transition-all text-slate-400">
+<span class="material-symbols-outlined">group</span>
+</button>
+<button class="p-3 hover:bg-black/5 rounded-2xl transition-all text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</nav>
+<div class="mt-auto flex flex-col gap-4">
+<div class="relative">
+<button class="p-3 hover:bg-black/5 rounded-full transition-all relative">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+</div>
+<button class="p-1 border-2 border-black/5 rounded-full overflow-hidden w-10 h-10">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOwfhYG5wM3Gtpj94mcsvjkOcu2N_IecpWwrxFBYj5zzQN4i--jMZTf5A8Bv-q9CGgO3UtmkFCP1b8r3EMELI1rrUF7tJf50xG_Vr4BYF41NJjsL9_jCHQ3YZxJJipatw0I4RgCmJOzxHlFNWgbfJFbbspv0CWuysaQ76dQDYsnx5MThUGuFK59Gun9_fo-jkXPpO_dYoywFUXN0BuL9aLozeGMgOONxiZflU6kSUmJ5__5Ydm_g5owJlrpGuXFah5n9bbrnd_nAQ"/>
+</button>
+</div>
+</header>
+</body></html>

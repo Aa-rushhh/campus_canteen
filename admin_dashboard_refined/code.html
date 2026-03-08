@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Smart Campus Canteen Admin</title><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#1a1a1a", "accent": "#fdfbf7", "muted-gold": "#c5a059", "background-light": "#FDFBF7", "background-dark": "#1a1a1a", }, fontFamily: { "display": ["Playfair Display", "serif"], "sans": ["Inter", "sans-serif"] }, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "20px": "20px", "30px": "30px", "full": "9999px"}, }, }, }</script><style>.glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.5) } .card-shadow { box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.05) } .grain-texture { position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.03; background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA4vMc9gwOKEjoaJ1IHsmmukzLKA7deilehdqLCSofrOBma-9m5EX4kcyEwI35nmYolYET7rDJYopH1_ZdYH6-2X_ffglz6lovN1C_OfjHW2i4MKZHLkPwPzSuq7LEHTNUvtG3GKBaxHqT0bEVd2mxDfQ1Uk_htZvGel1rOXgxtvY9ohMy6SXIvK_rHT-iZkw5kddl5UgMKwbnzcIDPiiMmtDO-fTOP-R5udWA23CYaiYKjyvQkiA9VQYposTD2ydDUCmNVhcae7gg) } .abstract-line { position: absolute; border: 0.5px solid rgba(0, 0, 0, 0.03); border-radius: 60% 40% 70% 30%/40% 50% 60% 40%; pointer-events: none; z-index: -1 } .ingredient-float { position: absolute; opacity: 0.15; pointer-events: none; z-index: -1; filter: blur(1px) }.bg-shape { position: fixed; top: 0; right: 0; width: 65vw; height: 130vh; background: linear-gradient(145deg, #111 0%, #222 100%); clip-path: ellipse(80% 100% at 100% 0%); z-index: -1; transform: rotate(-2deg) }</style></head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans"><div class="grain-texture"></div><div class="bg-shape hidden lg:block opacity-95"></div><div class="ingredient-float" style="top: 8%; left: 8%; transform: rotate(15deg); color: #1a1a1a; opacity: 0.05; position: fixed;"><span class="material-symbols-outlined text-8xl">eco</span></div>
+<div class="flex h-screen overflow-hidden">
+<aside class="w-72 bg-accent/80 backdrop-blur-xl border-r border-black/[0.03] flex flex-col z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-xl p-2 text-accent shadow-lg shadow-black/10">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight font-display uppercase tracking-tight">Smart Campus</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Admin Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2"><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-primary text-white shadow-xl shadow-black/10 transition-all" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-medium text-sm">Dashboard</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">menu_book</span><span class="font-medium text-sm">Menu Manager</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">shopping_bag</span><span class="font-medium text-sm">Orders</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">payments</span><span class="font-medium text-sm">Revenue</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">analytics</span><span class="font-medium text-sm">Reports</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="font-medium text-sm">Settings</span></a></nav>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-y-auto bg-background-light dark:bg-background-dark">
+<header class="sticky top-0 z-10 flex items-center justify-between px-8 py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-bold font-display tracking-tight text-slate-900 italic">Analytics Overview</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search analytics..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Total Orders Today</p>
+<span class="text-emerald-500 text-xs font-bold bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full">+12.5%</span>
+</div>
+<p class="text-3xl font-bold mt-2">1,284</p>
+<div class="mt-4 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Total Revenue</p>
+<span class="text-emerald-500 text-xs font-bold bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full">+8.2%</span>
+</div>
+<p class="text-3xl font-bold mt-2">$5,420.50</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px]">trending_up</span>
+<span class="text-xs text-slate-400">Up from yesterday</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Active Orders</p>
+<span class="text-primary text-xs font-bold bg-primary/10 px-2 py-0.5 rounded-full">LIVE</span>
+</div>
+<p class="text-3xl font-bold mt-2">42</p>
+<div class="mt-4 flex -space-x-2">
+<div class="size-6 rounded-full border-2 border-white dark:border-slate-900 bg-slate-300"></div>
+<div class="size-6 rounded-full border-2 border-white dark:border-slate-900 bg-slate-400"></div>
+<div class="size-6 rounded-full border-2 border-white dark:border-slate-900 bg-primary flex items-center justify-center text-[10px] text-white font-bold">+39</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Popular Item</p>
+</div>
+<p class="text-xl font-bold mt-2 truncate">Spicy Paneer Wrap</p>
+<p class="text-sm text-slate-400 mt-1">214 units sold today</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-bold text-lg font-display">Sales Performance</h3>
+<p class="text-sm text-slate-500">Revenue trends over the last 7 days</p>
+</div>
+<select class="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-primary">
+<option>Weekly</option>
+<option>Monthly</option>
+</select>
+</div>
+<div class="h-64 relative flex items-end justify-between gap-2 px-4">
+<div class="absolute inset-0 flex flex-col justify-between py-2 border-l border-slate-100 dark:border-slate-800">
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="w-full border-t border-slate-50 dark:border-slate-800/50"></div>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 120px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 60%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Mon</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 140px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 80%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Tue</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 160px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 95%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Wed</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 130px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 70%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Thu</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 180px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 90%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Fri</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 110px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 50%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Sat</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full z-10">
+<div class="w-full bg-primary/20 rounded-t-lg relative" style="height: 150px">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all" style="height: 85%"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-400">Sun</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 glass-card card-shadow border-none rounded-20px backdrop-blur-3xl">
+<h3 class="font-bold text-lg mb-6 font-display">Peak Ordering Times</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="text-xs font-bold text-slate-400 w-12">12 PM</div>
+<div class="flex-1 h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+</div>
+<div class="text-xs font-bold w-10">95%</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-xs font-bold text-slate-400 w-12">1 PM</div>
+<div class="flex-1 h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+<div class="text-xs font-bold w-10">80%</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-xs font-bold text-slate-400 w-12">8 AM</div>
+<div class="flex-1 h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary/60 rounded-full" style="width: 65%"></div>
+</div>
+<div class="text-xs font-bold w-10">65%</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-xs font-bold text-slate-400 w-12">6 PM</div>
+<div class="flex-1 h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 rounded-full" style="width: 45%"></div>
+</div>
+<div class="text-xs font-bold w-10">45%</div>
+</div>
+<div class="mt-8 p-4 bg-orange-50 dark:bg-primary/10 rounded-xl">
+<div class="flex items-center gap-2 text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span class="text-sm font-bold">Insight</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    Orders peak between 12:00 PM and 1:30 PM. Suggest increasing staff capacity for this slot.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div>
+<h3 class="font-bold text-lg font-display">Live Orders</h3>
+<p class="text-sm text-slate-500">Currently being prepared or ready for pickup</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filter
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-sans">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase tracking-wider font-bold bg-accent/50">
+<th class="px-6 py-4">Order ID</th>
+<th class="px-6 py-4">Items</th>
+<th class="px-6 py-4">Timestamp</th>
+<th class="px-6 py-4">Pickup Time</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4">
+<span class="font-bold text-sm">#SC-2401</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">
+<p class="font-medium">1x Spicy Paneer Wrap</p>
+<p class="text-xs text-slate-400">1x Cold Coffee</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12:15 PM</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">12:35 PM</td>
+<td class="px-6 py-4">
+<div class="relative w-40">
+<select class="w-full pl-3 pr-8 py-1.5 bg-slate-100 text-slate-900 text-[10px] font-bold border-none rounded-full focus:ring-1 focus:ring-primary appearance-none cursor-pointer uppercase tracking-widest"><option>Preparing</option><option>Ready</option></select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] pointer-events-none">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<span class="font-bold text-sm">#SC-2402</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">
+<p class="font-medium">2x Veg Burger</p>
+<p class="text-xs text-slate-400">1x French Fries (L)</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12:18 PM</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">12:40 PM</td>
+<td class="px-6 py-4">
+<div class="relative w-40">
+<select class="w-full pl-3 pr-8 py-1.5 bg-slate-100 text-slate-900 text-[10px] font-bold border-none rounded-full focus:ring-1 focus:ring-primary appearance-none cursor-pointer uppercase tracking-widest"><option>Preparing</option><option>Ready</option></select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] pointer-events-none">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<span class="font-bold text-sm">#SC-2403</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">
+<p class="font-medium">1x Chicken Biryani</p>
+<p class="text-xs text-slate-400">1x Extra Raita</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12:20 PM</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">12:45 PM</td>
+<td class="px-6 py-4">
+<div class="relative w-40">
+<select class="w-full pl-3 pr-8 py-1.5 bg-slate-100 text-slate-900 text-[10px] font-bold border-none rounded-full focus:ring-1 focus:ring-primary appearance-none cursor-pointer uppercase tracking-widest"><option>Preparing</option><option>Ready</option></select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] pointer-events-none">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<span class="font-bold text-sm">#SC-2404</span>
+</td>
+<td class="px-6 py-4">
+<div class="text-sm">
+<p class="font-medium">3x Masala Dosa</p>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12:22 PM</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">12:42 PM</td>
+<td class="px-6 py-4">
+<div class="relative w-40">
+<select class="w-full pl-3 pr-8 py-1.5 bg-slate-100 text-slate-900 text-[10px] font-bold border-none rounded-full focus:ring-1 focus:ring-primary appearance-none cursor-pointer uppercase tracking-widest"><option>Preparing</option><option>Ready</option></select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] pointer-events-none">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/30 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+<p class="text-xs text-slate-500 font-medium">Showing 4 of 42 active orders</p>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

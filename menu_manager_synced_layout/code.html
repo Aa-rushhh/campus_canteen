@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>Smart Campus Canteen - Menu Manager</title><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#1a1a1a", "accent": "#fdfbf7", "muted-gold": "#c5a059", "background-light": "#FDFBF7", "background-dark": "#1a1a1a", }, fontFamily: { "display": ["Playfair Display", "serif"], "sans": ["Inter", "sans-serif"] }, borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "20px": "20px", "30px": "30px", "full": "9999px"}, }, }, }</script><style>.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5)
+    }
+.card-shadow {
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.05)
+    }
+.card-hover:hover {
+    transform: translatey(-8px);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1)
+    }
+.bg-shape {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 65vw;
+    height: 130vh;
+    background: linear-gradient(145deg, #111 0%, #222 100%);
+    clip-path: ellipse(80% 100% at 100% 0%);
+    z-index: -1;
+    transform: rotate(-2deg)
+    }
+.grain-texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA4vMc9gwOKEjoaJ1IHsmmukzLKA7deilehdqLCSofrOBma-9m5EX4kcyEwI35nmYolYET7rDJYopH1_ZdYH6-2X_ffglz6lovN1C_OfjHW2i4MKZHLkPwPzSuq7LEHTNUvtG3GKBaxHqT0bEVd2mxDfQ1Uk_htZvGel1rOXgxtvY9ohMy6SXIvK_rHT-iZkw5kddl5UgMKwbnzcIDPiiMmtDO-fTOP-R5udWA23CYaiYKjyvQkiA9VQYposTD2ydDUCmNVhcae7gg)
+    }
+.floating-dots {
+    background-image: radial-gradient(#1a1a1a 0.5px, transparent 0.5px);
+    background-size: 32px 32px;
+    opacity: 0.08
+    }
+.btn-premium {
+    background: #1a1a1a;
+    color: #fdfbf7;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    letter-spacing: 0.15em
+    }
+.btn-premium:hover {
+    background: #000;
+    transform: translatey(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2)
+    }
+.image-gradient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none
+    }
+.abstract-line {
+    position: absolute;
+    border: 0.5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 60% 40% 70% 30%/40% 50% 60% 40%;
+    pointer-events: none;
+    z-index: -1
+    }
+.ingredient-float {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(1px)
+    }
+.splash-bg {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle at center, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none
+    }</style></head>
+<body class="bg-warm-beige dark:bg-background-dark min-h-screen relative overflow-x-hidden leaf-pattern"><div class="grain-texture"></div><div class="napkin-shape" style="width: 400px; height: 400px; background: #fff; border-radius: 80px; transform: rotate(35deg); position: fixed; bottom: -180px; left: -180px; z-index: -1; opacity: 0.4; box-shadow: 0 0 80px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.02);"></div><div class="abstract-line" style="width: 600px; height: 600px; top: 10%; left: -100px;"></div><div class="abstract-line" style="width: 400px; height: 400px; bottom: 10%; left: 20%;"></div><div class="bg-shape hidden lg:block opacity-95"></div><div class="fixed inset-0 floating-dots pointer-events-none -z-10"></div>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="flex flex-col lg:flex-row gap-8">
+<div class="flex-1"><div class="mb-12 flex justify-between items-end"><div class="flex-1"><h2 class="text-5xl font-extrabold mb-4 font-display tracking-tight text-slate-900 tracking-[-0.03em] italic">Menu Manager</h2><p class="text-slate-500 max-w-lg leading-relaxed font-light">Curate and refine your restaurant's culinary offerings.</p></div><button class="btn-premium px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] shadow-xl shadow-black/10 flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-[18px]">add</span>Add New Item</button></div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"><!-- Breakfast Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹140</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Avocado Toast</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Breakfast</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹120</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Classic Pancakes</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Breakfast</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹110</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Veg Omelette Sandwich</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Breakfast</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹130</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Greek Yogurt Bowl</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Breakfast</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹90</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Masala Poha</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Breakfast</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Lunch Special Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹160</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chicken Caesar Wrap</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Lunch Special</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹150</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Paneer Burrito Bowl</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Lunch Special</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹140</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Spicy Veg Quesadilla</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Lunch Special</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹170</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Teriyaki Chicken Rice Bowl</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Lunch Special</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹150</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Falafel Pita Pocket</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Lunch Special</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Evening Snacks Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹120</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Loaded Nachos</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Evening Snacks</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹110</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Peri Peri Fries</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Evening Snacks</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹100</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Veg Momos</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Evening Snacks</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-primary text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Non-Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹140</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chicken Popcorn</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Evening Snacks</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹130</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Cheese Garlic Bread</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Evening Snacks</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Beverages Items -->
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm40R-j_g3jzlKRAif9B5UjdvZHOrj5vdE0lqt16iwWNutjQrTDYS41IxkZizepazQFq2WSjJ57biOCZc5P6mwxRTzRTV3EvmHCSt7YE9s2WeJC1axjt2EuSw5wgudmqngbcOu4D30e_fObhZ9w4nR-yapihXQoIN31WNsr26QOOQhDjtJevoX3Gdobhest7jNVkTrVnvbsuNDnNeALJn14kz9wJth_1IZAZ8ry4N5h8gZxgF8KbZQ9_H-c77G4gJGDZuMBjzvGF0')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹90</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Cold Coffee</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Beverages</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChsXxhEsSZlAfs2nHgRQzBLRB7Ewx7LvIL9qbfeQsGdtKtmkyBkjPUynbA6OHT72ny_BHoWzkuoCDRKUZx7N9irBYsqSJemDas0xAkjGVtSNZN8btkuOLlMlpaSXU2eArCdP7476nicECXGhFhXnDwY1UsNnhC0_e3JvDKtry7QDYtbDsJ_mQLBKPKb-GwIkOwNZoyvGVHQgbrW3ItHhg7JhF-BNxWi4US_m1UD4eRdq3R8CCSbZAIW-rcMAiY5aQN2LtfsAbRr1Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹120</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Iced Matcha Latte</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Beverages</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDW9ZikJGsxWY8GBrSp2c27YkuaBqqtThnBbw5t00RLxCznKbo5F7XxRaZKl8rLKATsZb3YwLP5wph5mTs-zRSDis1LsLkkvjuNI2pzMzprsSzGE4zF5mjEbvpvRDuPac1NT9xoY4njhaJPt9C3r6WUIh56SRQkfTm_BrULWbzTUdnphzwNDV0rGDZ5P8xcnaJJqd5iV4kDTXpwUq6ZDSGnc4UqLEkVRErqeY-Kdq0D6qpGuXrk0qkRGrQXcnTCC8CU7PwhudDv18Y')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹70</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Fresh Lemon Soda</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Beverages</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZcNsiTdsHbR2jqnoPeZYlchkx3CHkuY2dwf-LEXVtJFELk2XAAbAVb1N_aX8RPhd-BlNrRqZUg9BSaj1fl4Q8ir_lI0gA4vFlsdjUuK9Jdt64G1cNDUZr98EBZgaItbtQE4Py_nm3_K1e0XpiQuy_1AaGu93cI_xeGNUgfBxfOyAG_TpElXnynVQEttseo923meC6qGhLRPjU_IVyoRWHeokHGIG5GDRevHU5FnXDN0CRSYcGLgfzQcxuSA2BADiwQevQBrh3XLA')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹110</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Mango Smoothie</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Beverages</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card overflow-hidden group hover:shadow-3xl transition-all duration-700 rounded-30px card-shadow card-hover">
+<div class="relative h-64 overflow-hidden image-gradient">
+<div class="splash-bg"></div>
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTrJF8eSs2LigHmlqcQ8hqqAX2Geo_FtGllmnW6osUZ3q4JF2r6YTbD5VFZ_JBPJ3ztRg9Ko_hfHn1mYcQm8Yk6haP0kxBhtFl4slCyNKUlkmgsG3DDLbthqz5eEd_Uw70A6sxM5trTRFrkXPvynIjf45wV4Ub4U3UKfnq8PCXJhO55j47VPUGJdxDzguFzoiMb9CfLD7qlWcyQBdAY9Ge0v7_zVhjjIeKMyLRniBcHSXK-s3SUhTsLdqeo8rJVcPdpmkSbxLruhc')"></div>
+<div class="absolute top-4 left-4"><span class="bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.15em]">Veg</span></div>
+<div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full text-sm">₹130</div>
+</div>
+<div class="p-7">
+<div class="flex justify-between items-start mb-1"><h3 class="font-bold text-xl font-display leading-tight tracking-tight">Chocolate Milkshake</h3></div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Beverages</p>
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Edit</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/5 text-primary py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Delete</span>
+</button>
+</div>
+</div>
+</div></div></div>
+<aside class="w-full lg:w-[400px] shrink-0">
+<div class="glass-card rounded-30px p-10 sticky top-28 border-white/50 shadow-3xl bg-white/10 backdrop-blur-3xl">
+<div class="flex items-center gap-3 mb-10">
+<div class="size-10 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">insights</span>
+</div>
+<h2 class="text-white text-2xl font-bold font-display tracking-tight">Quick Insights</h2>
+</div>
+<div class="space-y-8 mb-12">
+<div>
+<p class="text-white/50 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Total Menu Items</p>
+<div class="flex items-end gap-2">
+<span class="text-white text-5xl font-display">42</span>
+<span class="text-white/60 text-xs font-bold mb-2">+4 this month</span>
+</div>
+</div>
+<div>
+<p class="text-white/50 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Active Today</p>
+<div class="flex items-end gap-2">
+<span class="text-white text-5xl font-display">38</span>
+<span class="text-white/30 text-xs font-medium mb-2">/ 42 total</span>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10">
+<p class="text-white/50 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Most Popular Item</p>
+<div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
+<div class="size-16 rounded-xl overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGvn37HLNN935UaAHOpoGYE895FCv6M0O4VvHBNeJzlIz375Nf7sN7ZT7mlafWcUVQkEIkRGwzs6I7Xn6eNoPjQmFRZBSFaBd13md4wVdlxZcZWnLikv-vO3OZfPgsb9ViQZj3dUbbkSVPlSNhO2mkKwHEjNkqot88eEq4suyOUHw6RMgeXYIK3Z5BBYtmT7F8pk3wRGqixyux_j4mr33a9M_FtxCfhOGgxVSnT9cJ3Xt4PJEnnYm2lTg2loILqIIe6Z4AAdyL8rY"/>
+</div>
+<div>
+<h4 class="text-white font-bold text-sm leading-tight">Summer Harvest Bowl</h4>
+<p class="text-white/70 text-[10px] font-bold mt-1 uppercase tracking-widest">124 orders this week</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full btn-premium py-5 rounded-20px text-xs font-bold uppercase tracking-[0.2em] shadow-xl shadow-black/10 bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all">View Full Analytics</button>
+</div>
+</aside>
+</div>
+</main>
+<div class="ingredient-float text-[#4a5d23]" style="top: 25%; left: 3%; transform: rotate(-30deg); opacity: 0.15; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));"><span class="material-symbols-outlined text-6xl">spa</span></div></body></html>
